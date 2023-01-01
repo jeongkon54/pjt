@@ -1,0 +1,68 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+}
+
+group 'com.kidari'
+version '1.0'
+sourceCompatibility = '11'
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation 'mysql:mysql-connector-java'
+    // jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+    implementation group: 'com.auth0', name: 'auth0-spring-security-api', version: '1.5.1'
+    // jackson & json
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // prometheus
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.testng:testng:7.1.0'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    // Querydsl
+    implementation 'com.querydsl:querydsl-jpa'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+    //lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    //http
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
+    // Swagger
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // JUnit5
+    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+}
+
+
+test {
+    useJUnitPlatform()
+}
