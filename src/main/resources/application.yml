@@ -1,4 +1,0 @@
-#java -jar app.jar --spring.profiles.active=dev
-#-Dspring.profiles.active=dev
-spring:
-  profiles: dev

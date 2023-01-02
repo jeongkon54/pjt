@@ -1,10 +1,10 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '2.5.14'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
 }
 
-group 'com.kidari'
+group 'com.kidari.lecture'
 version '1.0'
 sourceCompatibility = '11'
 
@@ -21,7 +21,9 @@ repositories {
 }
 
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -32,11 +34,8 @@ dependencies {
     // jwt
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
     implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
-    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
     implementation group: 'com.auth0', name: 'auth0-spring-security-api', version: '1.5.1'
-    // jackson & json
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
-    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    // gson
     implementation 'com.google.code.gson:gson:2.9.0'
     // prometheus
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -51,8 +50,12 @@ dependencies {
     //http
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
     // Swagger
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
-    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    // https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter
+    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+    // https://mvnrepository.com/artifact/io.springfox/springfox-oas
+    implementation group: 'io.springfox', name: 'springfox-oas', version: '3.0.0'
 
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
@@ -60,6 +63,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 

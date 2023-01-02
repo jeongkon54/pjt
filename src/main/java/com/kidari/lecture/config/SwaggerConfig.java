@@ -1,8 +1,10 @@
 package com.kidari.lecture.config;
 
+import com.fasterxml.classmate.TypeResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -10,40 +12,26 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@Configuration
 @EnableWebMvc
-public class SwaggerConfig {
-
-    private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("PJT API")
-                .description("PJT API Docs").build();
-    }
+@Configuration
+public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     @Bean
-    public Docket swaggerApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .consumes(getConsumeContentTypes())
-                .produces(getProduceContentTypes())
-                .apiInfo(swaggerInfo()).select()
+    public Docket api(TypeResolver typeResolver) {
+        return new Docket(DocumentationType.OAS_30) // 3.0 문서버전으로 세팅
+                .useDefaultResponseMessages(true)
+                .apiInfo(apiInfo())
+                .select()
                 .apis(RequestHandlerSelectors.basePackage("com.kidari.lecture.controller"))
                 .paths(PathSelectors.any())
-                .build()
-                .useDefaultResponseMessages(false);
+                .build();
     }
 
-    private Set<String> getConsumeContentTypes() {
-        Set<String> consumes = new HashSet<>();
-        consumes.add("application/json;charset=UTF-8");
-        consumes.add("application/x-www-form-urlencoded");
-        return consumes;
-    }
-
-    private Set<String> getProduceContentTypes() {
-        Set<String> produces = new HashSet<>();
-        produces.add("application/json;charset=UTF-8");
-        return produces;
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("PJT Api Sample")
+                .description("This is Sample")
+                .version("1.0")
+                .build();
     }
 }
