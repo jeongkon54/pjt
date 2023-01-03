@@ -1,14 +1,18 @@
 package com.kidari.lecture.service;
 
+import com.kidari.lecture.config.exception.ApiParameterException;
 import com.kidari.lecture.model.Lecture;
 import com.kidari.lecture.repository.LectureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Slf4j
 @Service
 public class LectureService {
 
@@ -23,19 +27,16 @@ public class LectureService {
 
     @Transactional
     public Lecture create(Lecture lecture) {
-//        Lecture lt = lectureRepository.findLectureId(lecture.getId());
-//
-//        if (ObjectUtils.isEmpty(lt)) {
-//            throw new ApiParameterException("등록된 강의가 없습니다.");
-//        }
-//        if(lt.getId() == lecture.getId()) {
-//            int cnt = lt.getSingUpPeople();
-//            cnt = cnt + 1 ;
-//            lecture.setSingUpPeople(cnt);
-//        }
-
-//        lecture = lectureRepository.save(lecture);
-//        return modelMapper.map(lecture, Lecture.class);
+        log.info(" 강의 생성 !!! ");
         return lectureRepository.save(lecture);
+    }
+
+    public Lecture lectureView(Integer id) {
+        Lecture lt = lectureRepository.findLectureId(id);
+
+        if(ObjectUtils.isEmpty(lt))
+            throw new ApiParameterException("등록된 강의가 없습니다.");
+
+        return lt;
     }
 }

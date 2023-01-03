@@ -1,0 +1,32 @@
+# user
+
+{
+  "gender": "M",
+  "userName": "이승기",
+  "userNumber": "2301A"
+}
+
+{
+  "gender": "F",
+  "userName": "김슬기",
+  "userNumber": "2301B"
+}
+
+{
+  "gender": "M",
+  "userName": "김날길",
+  "userNumber": "2301C"
+}
+
+{
+  "gender": "F",
+  "userName": "아이유",
+  "userNumber": "2301D"
+}
+
+{
+  "gender": "M",
+  "userName": "남궁민",
+  "userNumber": "2301E"
+}
+
