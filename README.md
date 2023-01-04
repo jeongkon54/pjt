@@ -16,7 +16,7 @@
 2. 강연목록 입력 (lecture-rest-controller)
 3. 사용자 입력 (user-rest-controller)
 
-# DB 테이블 컬럼 타입 변경 처리 
+# DB 셍성 및 테이블 생성
 1. 시간은 time stamp 형식
 2. lecture.sql 을 열어 데이터베이스를 생성 및 데이터 삽입 가능
 
