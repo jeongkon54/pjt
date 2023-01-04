@@ -139,5 +139,19 @@ public class LectureRestController {
         return ResponseEntity.ok(response);
     }
 
+    @ApiOperation(value = "3일간 인기순 강연", notes = "신청한 강연 이력이 많은 순")
+    @GetMapping("/interest")
+    public ResponseEntity<ResponseListDto<Map<String,Object>>> lectureInterrest() {
+        ResponseListDto<Map<String, Object>> response = new ResponseListDto<>();
+
+        List<Map<String,Object>> list = lectureService.getLectureInterest();
+
+        response.setData(list);
+        response.setCount(list.size());
+        response.setSuccess(true);
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

@@ -11,6 +11,7 @@ import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -38,5 +39,9 @@ public class LectureService {
             throw new ApiParameterException("등록된 강의가 없습니다.");
 
         return lt;
+    }
+
+    public List<Map<String, Object>> getLectureInterest() {
+        return lectureRepository.getLectureInterest();
     }
 }
